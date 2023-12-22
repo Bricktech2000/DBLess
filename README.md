@@ -28,14 +28,14 @@ The implementations within this repository are meant to be wrapped by a shell al
 
 ```fish
 # do not load token, then output password to stdout
-function dbless; eval (which dbless) $argv; end
+function dbless; bin/dbless $argv; end
 
 # load token from environment variable, then output password to stdout
-function dbless; eval (which dbless) $TOKEN $argv; end
+function dbless; bin/dbless $TOKEN $argv; end
 
 # load token from environment variable, then output password to clipboard
-function dbless; eval (which dbless) $TOKEN $argv | xclip -selection clipboard; end
+function dbless; bin/dbless $TOKEN $argv | xclip -selection clipboard; end
 
 # load token from local file, then output password to clipboard
-function dbless; eval (which dbless) "(cat ~/.token)" $argv | xclip -selection clipboard; end
+function dbless; bin/dbless (cat token) $argv | xclip -selection clipboard; end
 ```
