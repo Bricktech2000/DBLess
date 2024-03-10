@@ -26,7 +26,7 @@ int main(int argc, char *argv[]) {
   sha256_final(&ctx, digest);
 
   fprintf(stderr, "Checksum: ");
-  for (int i = 0; i < 8; i += 2)
+  for (int i = 0; i < 8 / 2; i++)
     fprintf(stderr, "%02x", checksum[i]);
   fprintf(stderr, "\n");
 
