@@ -12,7 +12,7 @@ The DBLess algorithm is an embellished hash function which consists of updating 
 def dbless(master, *args): return a85encode(sha256(b'\n'.join([master, *args, b''])).digest())
 ```
 
-The argument sequence `args` is a list of strings that must uniquely identify the service to be logged into; examples of such a sequence would be `['github.com', 'email@provider']` and `[token, 'cloudflare', 'us-east-1', 'root']` where `token` is a secret token stored in a local file or environment variable.
+The argument sequence `args` is a list of strings that must uniquely identify the account to be logged into; examples of such a sequence would be `['github.com', 'email@provider']` and `[token, 'cloudflare', 'us-east-1', 'root']` where `token` is a secret token stored in a local file or environment variable.
 
 ## Usage
 

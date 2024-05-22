@@ -1,3 +1,4 @@
+#define _GNU_SOURCE // getpass
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -5,8 +6,6 @@
 
 #include "a85.h"
 #include "sha256.h"
-
-extern char *getpass(const char *prompt); // from unistd.h
 
 int main(int argc, char *argv[]) {
   SHA256_CTX ctx;
