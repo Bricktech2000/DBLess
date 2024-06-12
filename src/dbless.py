@@ -12,7 +12,7 @@ try:
 
   ctx.update(master + b'\n')
   checksum = ctx.hexdigest()[0:8]
-  ctx.update(b'\n'.join(args) + b'\n')
+  ctx.update(b'\n'.join([*args, b'']))
   password = a85encode(ctx.digest())
 
   sys.stderr.write(f'Checksum: {checksum}\n')
