@@ -74,15 +74,15 @@ void sha256_update(struct SHA256Ctx *ctx, const uint8_t *data, size_t len) {
 }
 
 uint8_t *sha256_final(struct SHA256Ctx *ctx) {
-  uint64_t nbits = ctx->nblocks * SHA256_BLOCK_SIZE + ctx->buflen * 8;
+  uint64_t nbits = (ctx->nblocks * SHA256_BLOCK_SIZE + ctx->buflen) * 8;
 
   ctx->buf[ctx->buflen++] = 0x80;
   int delta = SHA256_BLOCK_SIZE - 64 / 8 - ctx->buflen;
   if (delta < 0)
-    sha256_update(ctx, padding, SHA256_BLOCK_SIZE), delta += SHA256_BLOCK_SIZE;
+    delta += SHA256_BLOCK_SIZE;
   sha256_update(ctx, padding, delta);
 
-  for (int i = 0; i < 8; i++)
+  for (int i = 0; i < 64 / 8; i++)
     ctx->buf[ctx->buflen++] = nbits >> (7 - i) * 8;
   sha256_update(ctx, NULL, 0);
 

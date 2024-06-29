@@ -11,8 +11,6 @@
 int main(int argc, char *argv[]) {
   struct SHA256Ctx ctx;
   sha256_init(&ctx);
-  char **args = argv + 1;
-  int args_len = argc - 1;
   char *master = getpass("Master password: ");
 
   sha256_update(&ctx, (uint8_t *)master, strlen(master));
@@ -20,8 +18,8 @@ int main(int argc, char *argv[]) {
   struct SHA256Ctx checksum_ctx = ctx;
   uint8_t *checksum = sha256_final(&checksum_ctx);
 
-  for (int i = 0; i < args_len; i++) {
-    sha256_update(&ctx, (uint8_t *)args[i], strlen(args[i]));
+  for (char **arg = argv + 1; *arg; arg++) {
+    sha256_update(&ctx, (uint8_t *)*arg, strlen(*arg));
     sha256_update(&ctx, (uint8_t *)"\n", 1);
   }
   uint8_t *password = sha256_final(&ctx);
