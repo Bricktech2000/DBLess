@@ -2,12 +2,12 @@
 #include <assert.h>
 #include <stddef.h>
 
-const char *a85 = "!\"#$%&'()*+,-./0"
-                  "123456789:;<=>?@"
-                  "ABCDEFGHIJKLMNOP"
-                  "QRSTUVWXYZ[\\]^_`"
-                  "abcdefghijklmnop"
-                  "qrstu";
+static const char *a85 = "!\"#$%&'()*+,-./0"
+                         "123456789:;<=>?@"
+                         "ABCDEFGHIJKLMNOP"
+                         "QRSTUVWXYZ[\\]^_`"
+                         "abcdefghijklmnop"
+                         "qrstu";
 
 void a85_encode(char *buf, const uint8_t *data, size_t len) {
   assert(len % 4 == 0);
