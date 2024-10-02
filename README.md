@@ -4,15 +4,15 @@ _A hash-based, database-less password manager_
 
 ## Overview
 
-This repository contains a few implementations of the DBLess algorithm, from wihch may be built a password manager that does not require encryption or password storage.
+This repository contains a few implementations of the DBLess algorithm, from which may be built a password manager that does not require encryption or password storage.
 
-The DBLess algorithm is an embellished hash function which consists of updating a SHA256 hash object with a master password then repeatedly with an argument sequence before encoding the resulting digest in Ascii85:
+The DBLess algorithm is an embellished hash function, consisting of updating a SHA256 hash object with a master password then repeatedly with an argument sequence before encoding the resulting digest in Ascii85:
 
 ```python
 def dbless(master, *args): return a85encode(sha256(b'\n'.join([master, *args, b''])).digest())
 ```
 
-The argument sequence `args` is a list of strings that must uniquely identify the account to be logged into; examples of such a sequence would be `['github.com', 'email@provider']` and `[token, 'cloudflare', 'us-east-1', 'root']` where `token` is a secret token stored in a local file or environment variable.
+The argument sequence `args` is a list of strings that uniquely identifies the account to be logged into; examples of such sequences include `['github.com', 'email@provider']` and `[token, 'cloudflare', 'us-east-1', 'root']` where `token` would be a secret token stored in a local file or environment variable.
 
 ## Usage
 
