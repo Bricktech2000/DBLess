@@ -40,7 +40,7 @@ void sha256_init(struct SHA256Ctx *ctx) {
 }
 
 void sha256_update(struct SHA256Ctx *ctx, const uint8_t *data, size_t len) {
-  int i = -1;
+  size_t i = -1;
   goto precheck;
   for (; i < len; i++) {
     ctx->buf[ctx->buflen++] = data[i];
