@@ -1,7 +1,5 @@
 #include "sha256.h"
 #include <assert.h>
-#include <stddef.h>
-#include <stdint.h>
 #include <string.h>
 
 #define ROTR(x, n) (x >> n | x << 32 - n)
@@ -34,12 +32,12 @@ static const uint32_t H0[8] = {
 
 static const uint8_t padding[SHA256_BLOCK_SIZE] = {0x00};
 
-void sha256_init(struct SHA256Ctx *ctx) {
+void sha256_init(struct sha256_ctx *ctx) {
   ctx->nblocks = ctx->buflen = 0;
   memcpy(ctx->hash, H0, sizeof(H0));
 }
 
-void sha256_update(struct SHA256Ctx *ctx, const uint8_t *data, size_t len) {
+void sha256_update(struct sha256_ctx *ctx, const uint8_t *data, size_t len) {
   size_t i = -1;
   goto precheck;
   for (; i < len; i++) {
@@ -73,7 +71,7 @@ void sha256_update(struct SHA256Ctx *ctx, const uint8_t *data, size_t len) {
   }
 }
 
-uint8_t *sha256_final(struct SHA256Ctx *ctx) {
+uint8_t *sha256_final(struct sha256_ctx *ctx) {
   uint64_t nbits = (ctx->nblocks * SHA256_BLOCK_SIZE + ctx->buflen) * 8;
 
   ctx->buf[ctx->buflen++] = 0x80;
