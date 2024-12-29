@@ -16,7 +16,7 @@ The argument sequence `args` is a list of strings that uniquely identifies the a
 
 ## Usage
 
-```bash
+```sh
 # C implementation
 make && bin/dbless [args] # replace `[args]` with an argument sequence
 

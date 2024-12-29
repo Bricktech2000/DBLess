@@ -9,10 +9,10 @@ static const char *a85 = "!\"#$%&'()*+,-./0"
                          "qrstu";
 
 // these routines are no fancier than they need to be. this means:
-// - `"    "` does not encode to shorthand `'y'`
-// - `"\0\0\0\0"` does not encode to shorthand `'z'`
-// - shorthand `'y'` does not decode to `"    "`
-// - shorthand `'z'` does not decode to `"\0\0\0\0"`
+// - "    " does not encode to shorthand 'y'
+// - "\0\0\0\0" does not encode to shorthand 'z'
+// - shorthand 'y' does not decode to "    "
+// - shorthand 'z' does not decode to "\0\0\0\0"
 // - encoder does not pad input to multiple of 4
 // - decoder does not pad input to multiple of 5
 // - decoder does not ignore whitespace characters
