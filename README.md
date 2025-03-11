@@ -18,7 +18,7 @@ The argument sequence `args` is a list of strings that uniquely identifies the a
 
 ```sh
 # C implementation
-make && bin/dbless [args] # replace `[args]` with an argument sequence
+make bin/dbless && bin/dbless [args] # replace `[args]` with an argument sequence
 
 # Python implementation
 python3 src/dbless.py [args] # replace `[args]` with an argument sequence
