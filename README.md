@@ -18,24 +18,24 @@ The argument sequence `args` is a list of strings that uniquely identifies the a
 
 ```sh
 # C implementation
-make bin/dbless && bin/dbless [args] # replace `[args]` with an argument sequence
+make bin/dbless && bin/dbless [args...] # replace `[args...]` with an argument sequence
 
 # Python implementation
-python3 src/dbless.py [args] # replace `[args]` with an argument sequence
+python3 src/dbless.py [args...] # replace `[args...]` with an argument sequence
 ```
 
 The implementations within this repository are meant to be wrapped by a shell alias:
 
-```fish
+```sh
 # do not load token, then output password to stdout
-function dbless; bin/dbless $argv; end
+dbless() { bin/dbless $@; }
 
 # load token from environment variable, then output password to stdout
-function dbless; bin/dbless $TOKEN $argv; end
+dbless() { bin/dbless $TOKEN $@; }
 
 # load token from environment variable, then output password to clipboard
-function dbless; bin/dbless $TOKEN $argv | xclip -selection clipboard; end
+dbless() { bin/dbless $TOKEN $@ | xclip -selection clipboard; }
 
 # load token from local file, then output password to clipboard
-function dbless; bin/dbless (cat token) $argv | xclip -selection clipboard; end
+dbless() { bin/dbless $(cat token) $@ | xclip -selection clipboard; }
 ```
