@@ -1,12 +1,12 @@
 #include "a85.h"
 #include <string.h>
 
-static const char *a85 = "!\"#$%&'()*+,-./0"
-                         "123456789:;<=>?@"
-                         "ABCDEFGHIJKLMNOP"
-                         "QRSTUVWXYZ[\\]^_`"
-                         "abcdefghijklmnop"
-                         "qrstu";
+static const char *const a85 = "!\"#$%&'()*+,-./0"
+                               "123456789:;<=>?@"
+                               "ABCDEFGHIJKLMNOP"
+                               "QRSTUVWXYZ[\\]^_`"
+                               "abcdefghijklmnop"
+                               "qrstu";
 
 // these routines are no fancier than they need to be. this means:
 // - "    " does not encode to shorthand 'y'

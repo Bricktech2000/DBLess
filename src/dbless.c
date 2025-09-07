@@ -27,23 +27,20 @@ char *getpass(FILE *stream) {
     return NULL;
 
   size_t len = 0, cap = 256;
-  char *nl, *line = malloc(cap);
-  while (fgets(line + len, cap - len, stream) != NULL) {
-    if ((nl = memchr(line + len, '\n', cap - len)) == NULL) {
-      len = cap - 1, line = realloc(line, cap *= 2);
-      continue;
-    }
-    *nl = '\0', len = 0;
+  char *line = malloc(cap);
 
-    if (tcsetattr(fileno(stream), TCSAFLUSH, &orig) != 0)
-      return NULL;
+  for (int c; c = fgetc(stdin), c != EOF && c != '\n'; line[len++] = c)
+    len + 1 == cap ? line = realloc(line, cap *= 2) : 0;
+  line[len] = '\0';
+  if (ferror(stdin))
+    perror("fgetc"), exit(EXIT_FAILURE);
+  if (feof(stdin)) // EOF hit before newline found
+    return errno = ECANCELED, NULL;
 
-    return line;
-  }
+  if (tcsetattr(fileno(stream), TCSAFLUSH, &orig) != 0)
+    return NULL;
 
-  if (feof(stdin))
-    errno = ECANCELED; // EOF hit before newline found
-  return NULL;
+  return line;
 }
 
 int main(int argc, char *argv[]) {
