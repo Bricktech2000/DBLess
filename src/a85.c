@@ -9,13 +9,13 @@ static const char *const a85 = "!\"#$%&'()*+,-./0"
                                "qrstu";
 
 // these routines are no fancier than they need to be. this means:
-// - "    " does not encode to shorthand 'y'
-// - "\0\0\0\0" does not encode to shorthand 'z'
-// - shorthand 'y' does not decode to "    "
-// - shorthand 'z' does not decode to "\0\0\0\0"
-// - encoder does not pad input to multiple of 4
-// - decoder does not pad input to multiple of 5
-// - decoder does not ignore whitespace characters
+//   - "    " does not encode to shorthand 'y'
+//   - "\0\0\0\0" does not encode to shorthand 'z'
+//   - shorthand 'y' does not decode to "    "
+//   - shorthand 'z' does not decode to "\0\0\0\0"
+//   - encoder does not pad input to multiple of 4
+//   - decoder does not pad input to multiple of 5
+//   - decoder does not ignore whitespace characters
 
 char *a85_encode(char *buf, const uint8_t *data, size_t len) {
   // returns a pointer one past the last `char` written to `buf`, or `NULL` on
