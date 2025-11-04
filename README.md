@@ -6,7 +6,7 @@ _A hash-based, database-less password manager_
 
 This repository contains a few implementations of the DBLess algorithm, from which may be built a password manager that does not require encryption or password storage.
 
-The DBLess algorithm is an embellished hash function, consisting of updating a SHA-256 hash object with a master password then repeatedly with an argument sequence before encoding the resulting digest in Ascii85:
+The DBLess algorithm is an embellished hash function, consisting of updating a SHA‑256 hash object with a master password then repeatedly with an argument sequence before encoding the resulting digest in Ascii85:
 
 ```python
 def dbless(master, *args): return a85encode(sha256(b'\n'.join([master, *args, b''])).digest()).replace(b'z', b'!' * 5)
