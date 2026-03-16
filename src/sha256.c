@@ -38,7 +38,7 @@ static const uint32_t H0[8] = {
 
 void sha256_init(struct sha256_ctx *ctx) {
   ctx->nblocks = ctx->buflen = 0;
-  memcpy(ctx->hash, H0, sizeof(H0));
+  memcpy(ctx->hash, H0, sizeof H0);
 }
 
 void sha256_update(struct sha256_ctx *ctx, const uint8_t *data, size_t len) {
