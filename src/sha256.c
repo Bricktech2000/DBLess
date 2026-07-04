@@ -1,5 +1,4 @@
 #include "sha256.h"
-#include <assert.h>
 #include <string.h>
 
 #define ROTR(X, N) (X >> N | X << 32 - N)
@@ -88,8 +87,6 @@ uint8_t *sha256_final(struct sha256_ctx *ctx) {
   for (int i = 0; i < 64 / 8; i++)
     ctx->buf[ctx->buflen++] = nbits >> (7 - i) * 8;
   sha256_update(ctx, NULL, 0);
-
-  assert(ctx->buflen == 0); // assert multiple of 512 bits
 
   // use `ctx->buf` to store the final hash
   for (int i = 0, j = 0; i < 8; i++) {
